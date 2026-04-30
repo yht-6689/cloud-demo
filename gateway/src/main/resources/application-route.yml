@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: order-route
+          uri: lb://service-order
+          predicates:
+            - name: Path
+              args:
+                patterns: /api/order/**
+                matchTrailingSlash: true
+          filters:
+            - RewritePath=/api/order/(?<segment>.*), /$\{segment}
+        - id: product-route
+          uri: lb://product-order
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/product/(?<segment>.*), /$\{segment}
+
