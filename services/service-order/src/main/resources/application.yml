@@ -25,3 +25,10 @@ spring :
     import:
       - nacos:common.properties?group=order
       - nacos:database.properties?group=order
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
